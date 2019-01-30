@@ -1,5 +1,4 @@
-/*==============================================================*/ronaldo  flores 
-
+/*==============================================================*/
 /* table: administrador                                              */
 /*==============================================================*/
 
@@ -140,5 +139,11 @@ create table reserva_reporte
    constraint fk_reserva foreign key (id_reserva) references reserva(id_reserva),
    constraint fk_reporte foreign key (id_reporte) references reporte(id_reporte)
 );
+create table reportes(
+   id varchar(10),
+   nombre varchar(20)
+   primary key id
+);
 
 select * from cliente where cedula_cliente=56
+select * from reserva_reporte 
