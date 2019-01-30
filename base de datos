@@ -1,0 +1,143 @@
+/*==============================================================*/
+/* table: administrador                                              */
+/*==============================================================*/
+
+create table administrador 
+(
+   cedula               varchar(11)                    not null,
+   codigo_administrador integer identity               not null,
+   nombre               varchar(30)                    null,
+   apellido             varchar(30)                    null,
+   genero               varchar(10)                    null,
+   fecha_nacimiento     date                           null,
+   email                varchar(30)                    null,
+   numero_telefono      varchar(10)                    null,
+   usuario              varchar(40)                    null,
+   contrasena           varchar(20)                    null,
+   constraint pk_administrador primary key (cedula)
+);
+
+
+/*==============================================================*/
+/* table: cargo                                                 */
+/*==============================================================*/
+create table cargo 
+(
+   id_cargo           integer  identity              not null,
+   tipo_cargo         varchar(30)                    not null,
+   constraint pk_cargo primary key clustered (tipo_cargo)
+);
+
+/*==============================================================*/
+/* table: empleado                                              */
+/*==============================================================*/
+create table empleado 
+(
+   cedula_empleado      varchar(11)                    not null,
+   codigo_empleado      integer identity               not null,
+   tipo_cargo           varchar(30)                    not null,
+   cedula_administrador varchar(11)                    not null,
+   nombre               varchar(30)                    null,
+   apellido             varchar(30)                    null,
+   genero               varchar(10)                    null,
+   fecha_nacimiento     date                           null,
+   usuario              varchar(40)                    null,
+   contrasena           varchar(40)                    null,
+   sueldo               numeric(8,2)                   null,
+   email                varchar(30)                    null,
+   numero_telefono      varchar(10)                    null,
+   direccion_empleado   varchar(40)                    null,
+   constraint pk_empleado primary key (cedula_empleado),
+   constraint fk_empleado_administrador foreign key (cedula_administrador) references administrador(cedula),
+   constraint fk_empleado_cargo foreign key (tipo_cargo) references cargo(tipo_cargo)
+);
+
+
+/*==============================================================*/
+/* table: servicio                                              */
+/*==============================================================*/
+create table servicio 
+(
+   id_servicio          integer identity               not null,
+   descripcion_servicio varchar(50)                    null,
+   precio               numeric(8,2)                   null,
+   constraint pk_servicio primary key clustered (id_servicio)
+);
+
+
+/*==============================================================*/
+/* table: realiza                                               */
+/*==============================================================*/
+create table realiza 
+(
+   cedula_empleado      varchar(11)                    not null,
+   id_servicio          integer identity               not null,
+   constraint pk_realiza primary key (cedula_empleado, id_servicio),
+   constraint fk_realiza_empleado foreign key (cedula_empleado) references empleado(cedula_empleado),
+   constraint fk_realiza_servicio foreign key (id_servicio) references servicio(id_servicio)
+);
+
+
+/*==============================================================*/
+/* table: reserva                                               */
+/*==============================================================*/
+create table reserva 
+(
+   id_reserva           integer                        not null,
+   id_servicio          integer                        not null,
+   fecha_reserva        date                           null,
+   descripcion_reserva  varchar(50)                    null,
+   hora_reserva         time                           null,
+   direccion            varchar(40)                    null,
+   constraint pk_reserva primary key (id_reserva),
+   constraint fk_reserva_servicio foreign key(id_servicio) references servicio(id_servicio)
+);
+
+
+/*==============================================================*/
+/* table: cliente                                               */
+/*==============================================================*/
+create table cliente 
+(
+   cedula_cliente       varchar(11)                    not null,
+   codigo_cliente       integer                        not null,
+   id_reserva           integer                        not null,
+   nombre               varchar(30)                    null,
+   apellido             varchar(30)                    null,
+   genero               varchar(10)                    null,
+   fecha_nacimiento     date                           null,
+   email                varchar(30)                    null,
+   numero_telefono      varchar(10)                    null,
+   usuario              varchar(40)                    null,
+   contrasena           varchar(40)                    null,
+   direccion_cliente    varchar(40)                    null,
+   constraint pk_cliente primary key (cedula_cliente),
+   constraint fk_cliente_reserva foreign key (id_reserva) references reserva(id_reserva)
+);
+
+
+/*==============================================================*/
+/* table: reporte                                               */
+/*==============================================================*/
+create table reporte 
+(
+   id_reporte           integer                        not null,
+   fecha_reporte        date                           null,
+   descripcion_reporte  varchar(50)                    null,
+   constraint pk_reporte primary key (id_reporte)
+);
+
+
+/*==============================================================*/
+/* table: reserva_reporte                                       */
+/*==============================================================*/
+create table reserva_reporte 
+(
+   id_reporte           integer                        not null,
+   id_reserva           integer                        not null,
+   constraint pk_reserva_reporte primary key (id_reporte, id_reserva),
+   constraint fk_reserva foreign key (id_reserva) references reserva(id_reserva),
+   constraint fk_reporte foreign key (id_reporte) references reporte(id_reporte)
+);
+
+select * from cliente where cedula_cliente=56
