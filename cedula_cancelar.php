@@ -2,8 +2,9 @@
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link href="generar_reserva.css" type="text/css" rel="stylesheet">
-    <title></title>
+    <link href="csstablas.css" type="text/css" rel="stylesheet">
+    <link href="buscar.css" type="text/css" rel="stylesheet">
+    <title>Datos para Cancelar Reserva</title>
   </head>
 <?php
 function validarCI($strCedula)
@@ -79,105 +80,106 @@ function validarCI($strCedula)
                                                     
                                                     ?>
   
-<div class: contenedor>
-    <main>    
-        <section>
-            <article> <h2>Buscar registro</h2> <br>
-           </article>
-            <article>      
+ <div class="container" >
+     <main>    
+         <section>     
           <?php
           $dato =$_GET['cedula'];
           try {
-    require_once('conexion.php');
-    $sql = "select fecha_reserva,descripcion_reserva,hora_reserva,direccion from reserva  where (cedula_cliente=$dato) ";
-  
-    $result=$conn->query($sql);
-} catch (Exception $e) {
-    $error = $e->getMessage();
-}
-printf("<h2><center>....Esta Busqueda</h2></center><p>");
-?>
-        <TABLE BORDER=1 CELLSPACING=1 CELLPADDING=1>
-        <TR>
-                <Th>&nbsp;Fecha </Th>
-                <Th>&nbsp;Descripcion&nbsp;</Th>
-                <Th>&nbsp;hora &nbsp;</Th>
-                <Th>&nbsp;direccion &nbsp;</Th>
-        </TR>
-        <form name="form1" method="GET" action="borra.php">
-<?php
-$i=0;
-while($row = $result->fetch_array())
-{
-        printf("
-        <tr>
-                <td>&nbsp;%s</td>
-                <td>&nbsp;%s&nbsp;</td>
-                <td>&nbsp;%s&nbsp;</td>
-                <td>&nbsp;%s&nbsp;</td>
-                </td><td><a href=\"borra.php?cedula=%s\">Borra</a></td></tr>",$row["fecha_reserva"],$row["descripcion_reserva"],$row["hora_reserva"],$row["direccion"],$dato);
-
-                $i=$i+1;
-}
-?>
-        </form>
-        <?php
-$result->close();
-$conn->close();
-//printf($i);
-// $i=$result->num_rows;
-        if ($i==0)
-        {
-                printf("<p><center><h3>Datos No Encontrados</h3></center>");
-        }
-printf("Datos encontrados... "); 
-printf($i);
-?></article>                
-            </section>         
-        </main>
-     </div>
-<?php
-                                                    }
-                                                    else
-                                                        {
-                                                        echo "Cedula Incorrecta";
-                                                        
-                                                        }
-                                                        
-                                                        }
-                                                        else
-                                                            {
-                                                            echo "Este Nro de Cedula no corresponde a ninguna provincia del ecuador";
-                                                            
-                                                            }
-                                                            
-                                                            }
-                                                            else
-                                                                {
-                                                                echo "Es un Numero pero tiene ".$total_caracteres;
-                                                                
-                                                                }
-                                                                
-                                                                }
-                                                                else
-                                                                    {
-                                                                    echo "Esta Cedula no corresponde a un Nro de Cedula de Ecuador";
-                                                                    
-                                                                    }
-                                                                    
-                                                                    }
-                                                                    
-                                                                    }
-                                                                    $accion=$_GET["accion"];
-                                                                    $cedula=validarCI($_GET["cedula"]);
-                                                                    if($accion=="Buscar Reserva")
-                                                                        {
-                                                                        echo $cedula;
-                                                                        
-                                                                        }
-                                                                        else
-                                                                            {
-                                                                            echo "   no hay nada  ";
-                                                                            
-                                                                            }
-                                                                         ?>
+              require_once('conexion.php');
+              $sql = "select * from reserva  where (cedula_cliente=$dato) ";              
+              $result=$conn->query($sql);              
+              } catch (Exception $e) {
+                  $error = $e->getMessage();                  
+                  }
+                  ?>
+             <fieldset>                
+                 <div id="contact">
+                     <h2><br><center> Datos de la reserva </center></h2><br>
+                     <TABLE >
+                         <tr border="1" >
+                             <td>&nbsp;Cedula</td>                                               
+                             <td>&nbsp;Fecha &nbsp;</td>
+                             <td>&nbsp;Descripcion &nbsp;</td>
+                             <td>&nbsp;Hora &nbsp;</td>
+                             <td>&nbsp;Direccion &nbsp;</td>
+                             <td>&nbsp;Cancelar Reserva &nbsp;</td>>
+                         </tr>
+                         <form name="form1" method="GET" action="borra.php">
+                             <?php
+                             $i=0;
+                             while($row = $result->fetch_array())
+                                     {
+                                 printf("
+                                     <tr>
+                                     <td>&nbsp;%s</td>
+                                     <td>&nbsp;%s&nbsp;</td>
+                                     <td>&nbsp;%s&nbsp;</td>
+                                     <td>&nbsp;%s&nbsp;</td>
+                                     <td>&nbsp;%s&nbsp;</td>
+                                     </td><td><a href=\"borra.php?id=%s\">Cancelar_Reserva</a></td></tr>",$row["cedula_cliente"],$row["fecha_reserva"],$row["descripcion_reserva"],$row["hora_reserva"],$row["direccion"],$row["id_reserva"]);
+                                 $i=$i+1;                                   
+                                 }
+                                 ?>
+                       </table>
+                              <?php
+                                 $result->close();
+                                 $conn->close();
+                                 if ($i==0)
+                                     {
+                                     printf("<p><center><h3>Datos No Encontrados</h3></center>");
+                                     }
+                                     ?>
+                             <br><input type="button" value="Cancelar" onClick=" window.location.href='http://webapp.espoch.edu.ec/webapp11/reserva1/buscar_reserva_cancelar.php'" > </button>
+                             <br>
+                             </form>
+                 </div>
+             </fieldset>             
+         </section>         
+     </main>
+ </div>
+     <?php
+     }
+     else
+         {
+         echo "Cedula Incorrecta";
+         
+         }
+         
+         }
+         else
+             {
+             echo "Este Nro de Cedula no corresponde a ninguna provincia del ecuador";
+             
+             }
+             
+             }
+             else
+                 {
+                 echo "Es un Numero pero tiene ".$total_caracteres;
+                 
+                 }
+                 
+                 }
+                 else
+                     {
+                     echo "Esta Cedula no corresponde a un Nro de Cedula de Ecuador";
+                     
+                     }
+                     
+                     }
+                     
+                     }
+                     $accion=$_GET["accion"];
+                     $cedula=validarCI($_GET["cedula"]);
+                     if($accion=="Buscar Reserva")
+                         {
+                         echo $cedula;
+                         
+                         }
+                         else
+                             {
+                             echo "    ";
+                             
+                             }
+                             ?>

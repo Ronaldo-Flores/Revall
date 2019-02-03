@@ -1,0 +1,65 @@
+/* 
+    Created on : 02-feb-2019, 22:26:48
+    Author     : Ronaldo
+*/
+
+body {
+    font-family:"Open Sans", Helvetica, Arial, sans-serif;
+    font-weight:300;
+    font-size: 12px;
+    line-height:30px;
+    color:#7B3F06;
+    background:#E7903E;
+}
+
+.container {
+    max-width:600px;
+    width:100%;
+    margin:0 auto;
+    position:relative;
+}
+
+
+#contact {
+    background:#F9F9F9;
+    padding:25px;
+    margin:50px 0;
+}
+
+#contact h2 {
+    color: #7B3F06;
+    align-items: center;
+    text-align: center;
+    display: block;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+
+fieldset {
+    border: medium none !important;
+    margin: 0 0 10px;
+    min-width: 100%;
+    padding: 0;
+    width: 100%;
+}
+
+#contact input[type="submit"] {
+    width: 100%;
+    border: none;
+    background: #E5BB94;
+    color: #FFF;
+    margin: 0 0 5px;
+    padding: 10px;
+    font-size: 15px;
+}
+#contact input[type="button"] {
+    width: 100%;
+    border: none;
+    background: #E5BB94;
+    color: #FFF;
+    margin: 0 0 5px;
+    padding: 10px;
+    font-size: 15px;
+    float: end;
+}

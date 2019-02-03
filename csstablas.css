@@ -1,0 +1,27 @@
+
+table {
+   align-content: flex-start;
+    text-align: left;
+    border-color: #6F644C;
+    margin: 10px;
+    padding: auto;
+    width: 100%;
+}
+th,td {
+   border:0,5px ;
+   background-color: #F9F9F9; 
+   background-size: auto;
+   column-width: auto;
+   padding:5px 10px;
+   font-size:12px;
+   width: 900px;
+   text-align: left;
+   margin: 20px;
+   border-top: 7px solid #9baff1;
+   border-bottom: 7px solid ;
+   height: auto;
+    
+}
+td.cell2,th.cell2{
+    width: 1000px; 
+}

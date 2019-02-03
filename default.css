@@ -115,8 +115,10 @@ hr
 
 /** LOGO */
 
-#logo
+#imagen
 {
+    align:center;
+    
 }
 
 #logo h1, #logo p
@@ -181,13 +183,15 @@ hr
 {
 	position: absolute;
 	right: 10px;
-	width: 725px;
-	padding: 10px 10px 40px 10px;
+	width: 745px;
+	padding: 10px 10px 50px 10px;
 	background: #FFDA99;
 	box-shadow: inset 0px 0px 0px 10px rgba(255, 255, 255,0.50);
 	border-radius: 40px 0px 40px 0px;
 }
-
+#imagen {
+    align-content: center;
+}
 #content h2 a
 {
 	display: block;
@@ -207,14 +211,24 @@ hr
 
 #content .post
 {
-	padding: 40px;
+	padding: 30px;
+        text-align: center;
+    
+        
 }
 
-#box2 
+#menu
 {
-	margin: 0px 40px;
-	padding: 40px 0px;
-	border-top: 1px solid #DDBE88;
+    align-content: center;
+}
+
+#box1
+{
+	margin: 0px 10px;
+	padding: 10px 0px;
+        text-align: center;
+        font-size:79%;
+	
 }
 
 /** SIDEBAR */
@@ -223,17 +237,27 @@ hr
 {
 	position: absolute;
 	width: 270px;
-	left: 10px;
+	left: -262px;
 	top: 50px;
 }
-
+#logo{
+    text-align: center;
+    color: #574E3C;
+    text-decoration: window;
+    clear: both;
+    
+    
+}
 .box
 {
+        
 	overflow: hidden;
-	padding: 40px 40px;
+	padding: 35px 35px;
 	background: #B01E73;
+        align-items: stretch;
 	box-shadow: inset 0px 0px 0px 10px rgba(255, 255, 255,0.90);
 	border-radius: 0px 40px 0px 40px;
+        
 }
 
 /* Footer */
@@ -248,14 +272,6 @@ hr
 {
 	padding: 30px 0px 0px 0px;
 	text-align: center;
-}
-
-#footer a
-{
-}
-
-.border
-{
 }
 
 /** LIST STYLE 1 */
@@ -293,12 +309,4 @@ ul.style1 .first {
 	border-top: none;
 	box-shadow: none;
 }
-
-
-
-
-
-
-
-
 

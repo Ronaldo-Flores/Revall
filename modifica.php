@@ -6,8 +6,6 @@ $direccion= $_POST['direccion'];
 $descripcion= $_POST['descripcion_reserva'];
 $hora= $_POST['hora_reserva'];
 
-// echo "$sql";
-// exit();
 try 
 {
     require_once('conexion.php');

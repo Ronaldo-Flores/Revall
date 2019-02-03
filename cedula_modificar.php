@@ -2,8 +2,9 @@
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link href="generar_reserva.css" type="text/css" rel="stylesheet">
-    <title></title>
+    <link href="csstablas.css" type="text/css" rel="stylesheet">
+    <link href="buscar.css" type="text/css" rel="stylesheet">
+    <title>Datos para Modificar Reserva</title>
   </head>
 <?php
 function validarCI($strCedula)
@@ -78,65 +79,73 @@ function validarCI($strCedula)
                                                     {
                                                     
                                                     ?>
-  
-<div class: contenedor>
-    <main>    
-        <section>
-            <article> <p>Buscar registro</p> <br>
-           </article>
-            <article>      
+ <div class="container" >
+     <main>    
+         <section>      
           <?php
           $dato =$_GET['cedula'];
           try {
-    require_once('conexion.php');
-    $sql = "select * from reserva  where (cedula_cliente=$dato) ";
-  
-    $result=$conn->query($sql);
-} catch (Exception $e) {
-    $error = $e->getMessage();
-}
-printf("<h2><center>....Esta Busqueda</h2></center><p>");
-?>
-        <TABLE BORDER=1 CELLSPACING=1 CELLPADDING=1>
-        <TR>
-                <Th>&nbsp;Fecha </Th>
-                <Th>&nbsp;Descripcion&nbsp;</Th>
-                <Th>&nbsp;hora &nbsp;</Th>
-                <Th>&nbsp;direccion &nbsp;</Th>
-        </TR>
-        <form name="form1" method="GET" action="borra.php" >
+              require_once('conexion.php');
+              $sql = "select * from reserva  where (cedula_cliente=$dato) ";
+              
+              $result=$conn->query($sql);
+              
+              } catch (Exception $e) {
+                  $error = $e->getMessage();
+                  
+                  }
+                  ?>
+             <fieldset>
+                 <div id="contact">
+                     <h2><br><center> Reserva resulatdo de la busqueda</center></h2><br>
+                     
+                     <TABLE BORDER=1 CELLSPACING=1 CELLPADDING=1>
+                         <TR>
+                             <td>&nbsp;Cedula</td>                                               
+                             <td>&nbsp;Fecha &nbsp;</td>
+                             <td>&nbsp;Descripcion &nbsp;</td>
+                             <td>&nbsp;Hora &nbsp;</td>
+                             <td>&nbsp;Direccion &nbsp;</td>
+                             <Td>&nbsp;Modificar &nbsp;</Td>
+                             
+                         </TR>
+                         <form name="form1" method="GET" action="borra.php" >
             <?php
-$i=0;
-while($row = $result->fetch_array())
-        
-{
-        printf("
-                <tr>
-                <td>&nbsp;%s</td>
-                <td>&nbsp;%s&nbsp;</td>
-                <td>&nbsp;%s&nbsp;</td>
-                <td>&nbsp;%s&nbsp;</td>
-                </td><td><a href=\"actualiza.php?id_reserva=%d\">Modificar</a></td></tr>",$row["fecha_reserva"],$row["descripcion_reserva"],$row["hora_reserva"],$row["direccion"],$row["id_reserva"]);
-        $i=$i+1;
-}
-
-$result->close();
-$conn->close();
-//printf($i);
-// $i=$result->num_rows;
-        if ($i==0)
-        {
-                printf("<p><center><h3>Datos No Encontrados</h3></center>");
-        }
-printf("Datos encontrados... "); 
-printf($i);
-?>
-        </form>
-            </article>                
-            </section>         
-        </main>
-     </div>
-<?php
+            $i=0;
+            while($row = $result->fetch_array())
+                    
+                    {
+                printf("
+                    <tr>
+                    <td>&nbsp;%s</td>
+                    <td>&nbsp;%s&nbsp;</td>
+                    <td>&nbsp;%s&nbsp;</td>
+                    <td>&nbsp;%s&nbsp;</td>
+                    <td>&nbsp;%s&nbsp;</td>
+                    </td><td><a href=\"actualiza.php?cedula=%s\">Modificar</a></td></tr>",$row["cedula_cliente"],$row["fecha_reserva"],$row["descripcion_reserva"],$row["hora_reserva"],$row["direccion"],$row['cedula_cliente']);
+                $i=$i+1;
+                
+                }
+                $result->close();
+                $conn->close();
+                if ($i==0)
+                    {
+                    printf("<p><center><h3>Datos No Encontrados</h3></center>");
+                    }
+                    ?>
+                          </form>
+                      </table>
+                              <?php
+                    ?>                   
+                             <br> 
+                             <br>
+                 <input type="button" value="Regresar" onClick=" window.location.href='http://webapp.espoch.edu.ec/webapp11/reserva1/buscar_reserva_modificar.php'" > </button>                 
+                 </div>
+             </fieldset>
+         </section>                    
+     </main>
+ </div>
+                                                    <?php
                                                     }
                                                     else
                                                         {
@@ -177,7 +186,7 @@ printf($i);
                                                                         }
                                                                         else
                                                                             {
-                                                                            echo "   no hay nada  ";
+                                                                            echo "    ";
                                                                             
                                                                             }
                                                                          ?>
