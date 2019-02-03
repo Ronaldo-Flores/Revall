@@ -1,9 +1,8 @@
 <?php
 
-$hostname="localhost";
-$database="baseapp11";
-$username="user11";
-$password="12151997";
-
+$hostname='localhost';
+$database='baseapp27';
+$username='user27';
+$password='Gina=17linda';
 ?>
 
